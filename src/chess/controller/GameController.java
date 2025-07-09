@@ -16,6 +16,7 @@ import chess.util.Animation;
 import chess.util.AppContext;
 import chess.util.FlowController;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
@@ -331,6 +332,7 @@ public class GameController extends Controller implements Initializable {
             } else {
                 Animation.getInstance().aumentarTamaño((Piece) AppContext.getInstance().get("capturedPiece"));
                 fp_containerWhitePieces.getChildren().add((Piece) AppContext.getInstance().get("capturedPiece"));
+                
             }
         }
     }
@@ -345,7 +347,7 @@ public class GameController extends Controller implements Initializable {
                 fp_containerWhitePieces.getChildren().remove(i);
             }
 
-        }
+        } 
 
     }
 
@@ -356,8 +358,8 @@ public class GameController extends Controller implements Initializable {
     }
     
     private void verificarGanador() {
-    boolean jugadorBlancoSinPiezas = logicBoard.getAllPieces("white").isEmpty();
-    boolean jugadorNegroSinPiezas = logicBoard.getAllPieces("black").isEmpty();
+    boolean jugadorBlancoSinPiezas = ((List<?>) logicBoard.getAllPieces("white")).isEmpty();
+    boolean jugadorNegroSinPiezas = ((List<?>) logicBoard.getAllPieces("black")).isEmpty();
 
     if (jugadorBlancoSinPiezas) {
         mostrarMensajeGanador(lb_blackPlayer.getText());
