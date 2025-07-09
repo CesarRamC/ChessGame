@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -353,5 +354,24 @@ public class GameController extends Controller implements Initializable {
         lb_blackScore.setText("");
 
     }
+    
+    private void verificarGanador() {
+    boolean jugadorBlancoSinPiezas = logicBoard.getAllPieces("white").isEmpty();
+    boolean jugadorNegroSinPiezas = logicBoard.getAllPieces("black").isEmpty();
+
+    if (jugadorBlancoSinPiezas) {
+        mostrarMensajeGanador(lb_blackPlayer.getText());
+    } else if (jugadorNegroSinPiezas) {
+        mostrarMensajeGanador(lb_whitePlayer.getText());
+    }
+}
+
+private void mostrarMensajeGanador(String jugador) {
+    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+    alerta.setTitle("Fin del Juego");
+    alerta.setHeaderText(null);
+    alerta.setContentText("¡" + jugador + " ha ganado la partida!");
+    alerta.showAndWait();
+}
 
 }
