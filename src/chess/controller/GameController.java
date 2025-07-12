@@ -322,20 +322,60 @@ public class GameController extends Controller implements Initializable {
         }
 
     }
+    
+   /*public void capturedPieces(Boolean piece) {
+    if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
+        Piece pieza = (Piece) AppContext.getInstance().get("capturedPiece");
+        Animation.getInstance().aumentarTamaño(pieza);
+        
+        if (piece == true) {
+            fp_containerBlackPieces.getChildren().add(pieza);
+        } else {
+            fp_containerWhitePieces.getChildren().add(pieza);
+        }
 
+        calculateValuesPieces(!piece); // recalcula el puntaje
+        
+    }
+}*/
+    
     public void capturedPieces(Boolean piece) {
+    if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
+        Piece captured = (Piece) AppContext.getInstance().get("capturedPiece");
 
-        if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
-            if (piece == true) {
-                Animation.getInstance().aumentarTamaño((Piece) AppContext.getInstance().get("capturedPiece"));
-                fp_containerBlackPieces.getChildren().add((Piece) AppContext.getInstance().get("capturedPiece"));
-            } else {
-                Animation.getInstance().aumentarTamaño((Piece) AppContext.getInstance().get("capturedPiece"));
-                fp_containerWhitePieces.getChildren().add((Piece) AppContext.getInstance().get("capturedPiece"));
-                
+        if (piece == true) {
+            // Pieza capturada por jugador blanco (captura pieza negra)
+            Animation.getInstance().aumentarTamaño(captured);
+            fp_containerBlackPieces.getChildren().add(captured);
+
+            if (fp_containerBlackPieces.getChildren().size() == 10) {
+                String ganador = lb_player1.getText(); // jugador blanco
+                mostrarGanador(ganador);
+            }
+
+        } else {
+            // Pieza capturada por jugador negro (captura pieza blanca)
+            Animation.getInstance().aumentarTamaño(captured);
+            fp_containerWhitePieces.getChildren().add(captured);
+
+            if (fp_containerWhitePieces.getChildren().size() == 10) {
+                String ganador = lb_player2.getText(); // jugador negro
+                mostrarGanador(ganador);
             }
         }
     }
+}
+
+// Método auxiliar para mostrar el mensaje de victoria
+private void mostrarGanador(String nombreJugador) {
+    javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+    alert.setTitle("Partida finalizada!!");
+    alert.setHeaderText(null);
+    alert.setContentText("¡Felicidades! El ganador es: " + nombreJugador + "Lo Hiciste Excelente!");
+    alert.showAndWait();
+}
+
+  
 
     public void resetCapturedPieces() {
         resetCalculateValuesPieces();
@@ -357,23 +397,9 @@ public class GameController extends Controller implements Initializable {
 
     }
     
-    private void verificarGanador() {
-    boolean jugadorBlancoSinPiezas = ((List<?>) logicBoard.getAllPieces("white")).isEmpty();
-    boolean jugadorNegroSinPiezas = ((List<?>) logicBoard.getAllPieces("black")).isEmpty();
+   
+    
+   
 
-    if (jugadorBlancoSinPiezas) {
-        mostrarMensajeGanador(lb_blackPlayer.getText());
-    } else if (jugadorNegroSinPiezas) {
-        mostrarMensajeGanador(lb_whitePlayer.getText());
-    }
-}
-
-private void mostrarMensajeGanador(String jugador) {
-    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-    alerta.setTitle("Fin del Juego");
-    alerta.setHeaderText(null);
-    alerta.setContentText("¡" + jugador + " ha ganado la partida!");
-    alerta.showAndWait();
-}
 
 }

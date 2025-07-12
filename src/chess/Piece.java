@@ -20,6 +20,10 @@ public abstract class Piece extends ImageView {
 
     protected Boolean active;//Revisar si la usa (la idea es que mantenga si está en juego o ya fue descartada)
 
+    public COLOR getColor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public enum COLOR {
         WHITE, BLACK
     }
