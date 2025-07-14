@@ -350,6 +350,7 @@ public class GameController extends Controller implements Initializable {
     public void capturedPieces(Boolean piece) {
     if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
         Piece captured = (Piece) AppContext.getInstance().get("capturedPiece");
+        Animation.getInstance().aumentarTamaño(captured);
 
         if (piece == true) {
             // Pieza capturada por jugador blanco (este captura pieza negra)
