@@ -116,8 +116,8 @@ public class GameController extends Controller implements Initializable {
         //changeTurn();
         setNamePlayers();
 
-        //lb_player1.setText("Jugador 1:");
-        //lb_player2.setText("Jugador 2:");
+        //lb_player1.setText("Jugador 1:"); **********************
+        //lb_player2.setText("Jugador 2:"); **********************
 
     }
        
@@ -132,14 +132,14 @@ public class GameController extends Controller implements Initializable {
 
         for (int i = 0; i < Data.getPlayers().size(); i++) {
             if (Data.getPlayers().get(i).getIsWhitePiece() == true) {
-                String nombre = Data.getPlayers().get(i).getName();// Se captura el nombre del juagdor 1
+                String nombre = Data.getPlayers().get(i).getName();// Se captura el nombre del juagdor 1 ***********
                 lb_whitePlayer.setText(nombre);
                 lb_player1.setText(nombre);
 
                // lb_whitePlayer.setText(Data.getPlayers().get(i).getName());
             } else {
                 //lb_blackPlayer.setText(Data.getPlayers().get(i).getName());
-                String nombre = Data.getPlayers().get(i).getName(); //Se captura el nombre del jugador 2
+                String nombre = Data.getPlayers().get(i).getName(); //Se captura el nombre del jugador 2 ************
                 lb_blackPlayer.setText(nombre);
                 lb_player2.setText(nombre);
             }
@@ -346,13 +346,13 @@ public class GameController extends Controller implements Initializable {
         
     }
 }*/
-    
+    //*********************************************************
     public void capturedPieces(Boolean piece) {
     if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
         Piece captured = (Piece) AppContext.getInstance().get("capturedPiece");
 
         if (piece == true) {
-            // Pieza capturada por jugador blanco (captura pieza negra)
+            // Pieza capturada por jugador blanco (este captura pieza negra)
             Animation.getInstance().aumentarTamaño(captured);
             fp_containerBlackPieces.getChildren().add(captured);
 
@@ -362,7 +362,7 @@ public class GameController extends Controller implements Initializable {
             }
 
         } else {
-            // Pieza capturada por jugador negro (captura pieza blanca)
+            // Pieza capturada por jugador negro ( esete captura pieza blanca)
             Animation.getInstance().aumentarTamaño(captured);
             fp_containerWhitePieces.getChildren().add(captured);
 
@@ -375,14 +375,14 @@ public class GameController extends Controller implements Initializable {
 }
 
 // Método para mostrar el mensaje de victoria
-private void mostrarGanador(String nombreJugador) {
+    private void mostrarGanador(String nombreJugador) {
     javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
     alert.setTitle("Partida finalizada!!");
     alert.setHeaderText(null);
-    alert.setContentText("¡Felicidades! El ganador es: " + nombreJugador + " Lo Hiciste Excelente! ");
+    alert.setContentText("¡Felicidades! El ganador es: " + nombreJugador + "!! "+" Lo Hiciste Excelente! ");//Mensaje para le ganador
     alert.showAndWait();
     
-    // Bloquear el tablero para que no hayan mas interaciones
+    // Bloquear el tablero para que no hayan mas interaciones *************************
     tp_boardGraphic.setDisable(true);
     
 } 
