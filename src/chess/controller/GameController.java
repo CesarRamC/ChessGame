@@ -374,7 +374,7 @@ public class GameController extends Controller implements Initializable {
     }
 }
 
-// Método para mostrar el mensaje de victoria
+// Método para mostrar el mensaje de ganador
     private void mostrarGanador(String nombreJugador) {
     javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
     alert.setTitle("Partida finalizada!!");
