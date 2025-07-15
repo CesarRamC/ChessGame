@@ -114,14 +114,9 @@ public class GameController extends Controller implements Initializable {
 
         fillBoard();
         //changeTurn();
-        setNamePlayers();
-
-        //lb_player1.setText("Jugador 1:"); **********************
-        //lb_player2.setText("Jugador 2:"); **********************
-
+        setNamePlayers();        
     }
-       
-    
+           
 
     @Override
     public void initialize() {
@@ -330,23 +325,7 @@ public class GameController extends Controller implements Initializable {
         }
 
     }
-    
-   /*public void capturedPieces(Boolean piece) {
-    if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
-        Piece pieza = (Piece) AppContext.getInstance().get("capturedPiece");
-        Animation.getInstance().aumentarTamaño(pieza);
-        
-        if (piece == true) {
-            fp_containerBlackPieces.getChildren().add(pieza);
-        } else {
-            fp_containerWhitePieces.getChildren().add(pieza);
-        }
-
-        calculateValuesPieces(!piece); // recalcula el puntaje
-        
-    }
-}*/
-    //*********************************************************
+       
     public void capturedPieces(Boolean piece) {
     if ((Piece) AppContext.getInstance().get("capturedPiece") != null) {
         Piece captured = (Piece) AppContext.getInstance().get("capturedPiece");
